@@ -292,7 +292,7 @@ if __name__=="__main__":
         #svmSVC is worse than other tree "SVM SVC linear kernel"
         #svmSVC = svmSVCClassifier()#"better to unbalanced classes samples" (i have few negatives samples) according scikit learn
 
-        print ("Testing better parrameters for classifiers")
+        print ("Testing better parameters for classifiers")
         classifiers_names = ["multinomial Naive Bayes","Bernoulli Naive Bayes","SVM LinearSGD"]
         testBetterParameters(train_set,[multinomialNaiveBayes,bernoulliNaiveBayes,svmSGD],classifiers_names)
         print ("Fim dos testes de parâmetros")
@@ -339,7 +339,7 @@ if __name__=="__main__":
 
         print ("FIM DAS AVALIAÇÕES")
 
-    opcao = input("Train classifier using all samples and classifer all data_set?(yes/No):")
+    opcao = input("Train classifier using all samples and classify all data_set?(yes/No):")
     if opcao.lower() in ["yes","y"]:
         print ("Treinando e classificando toda base")
 

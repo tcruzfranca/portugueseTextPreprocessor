@@ -2,14 +2,15 @@ import json
 #import datetime
 from dateutil import parser
 
-arq0 = open("rocinha")
+arq0 = open("tiagosilva.json")
 
 dicionario = {}
 
 for arq in [arq0]:
     for tweet in arq:
         tweet = json.loads(tweet)
-        data = tweet["created_at"]
+        data = tweet["tweet_created_at"]
+        # não está sendo possível parsear a data
         data = parser.parse(data)
         chave = str(data.day)+"-"+str(data.month)
         if (dicionario.has_key(chave)):

@@ -16,30 +16,31 @@ def contWordsInTweet(vetorPalavras):
 
     return bagOfWords
 
-def listOfAllWordsWithouStopWords(arquivo,lang="pt-br"):
+def listOfAllWordsWithoutStopWords(arquivo,lang="pt-br"):
 
     listaOfWords = []
     preProcessor = PreProcessor()
     #cont = 0
-    for linha in arquivo:
-        #cont += 1
-        #if cont > 200:
-        #    break
-        tweet = json.loads(linha)
-        tweet = tweet['text']
-        tweet = tweet.lower()
-        tweet = preProcessor.remove_stopWords(tweet,lang)
-        tweet = preProcessor.textFilter(tweet)
-        tweet = preProcessor.removeNonAlphaNumericValues(tweet)
-        listaOfWords.extend(tweet.split())
-        #sugestão: substituir função lambda por list comprehension
-        listaOfWords = map(lambda x: x.replace(" ",""),listaOfWords)
-        #listaOfWords = [x.replace(" ","") for x in listaOfWords]
-    '''
-    for i in listaOfWords:
-        if len(i)>20:
-            print (i)
-    '''
+    with open(arquivo) as arquivo:
+        for linha in arquivo:
+            #cont += 1
+            #if cont > 200:
+            #    break
+            tweet = json.loads(linha)
+            tweet = tweet['tweet_text']
+            tweet = tweet.lower()
+            tweet = preProcessor.remove_stopWords(tweet,lang)
+            tweet = preProcessor.textFilter(tweet)
+            tweet = preProcessor.removeNonAlphaNumericValues(tweet)
+            listaOfWords.extend(tweet.split())
+            #sugestão: substituir função lambda por list comprehension
+            #listaOfWords = map(lambda x: x.replace(" ",""),listaOfWords)
+            listaOfWords = [x.replace(" ","") for x in listaOfWords]
+        '''
+        for i in listaOfWords:
+            if len(i)>20:
+                print (i)
+        '''
     return listaOfWords
 
 def saveCSVFromBagOfWords(arq, bagOfWords,targetFile):
@@ -63,7 +64,7 @@ if __name__ == "__main__":
 
     listaPalavras = []
     for arquivo in arquivos:
-        listaPalavras.extend(listOfAllWordsWithouStopWords(arquivo))
+        listaPalavras.extend(listOfAllWordsWithoutStopWords(arquivo))
 
     bagOfWords = contWordsInTweet(listaPalavras)
     saveCSVFromBagOfWords(arqDestino, bagOfWords,"")

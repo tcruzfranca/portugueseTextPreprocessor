@@ -103,20 +103,20 @@ def prepararBase(PreProcessor):
 
 def menu():
     PreProcessor = Preprocessor.PreProcessor()
-    opcao = raw_input("Preparar base de treino e teste yes/No?")
+    opcao = input("Preparar base de treino e teste yes/No?")
     if opcao.lower() in ["yes","y"]:
         prepararBasesTreinoTeste(PreProcessor)
 
-    opcao = raw_input("Preparar base de treino e teste sem stemming yes/No?")
+    opcao = input("Preparar base de treino e teste sem stemming yes/No?")
     if opcao.lower() in ["yes","y"]:
         prepararBasesTreinoTesteWithoutStemming(PreProcessor)
 
     PreProcessor = Preprocessor.PreProcessor()
-    opcao = raw_input("Preparar base de treino e teste da pasta de janelas Yes/no?")
+    opcao = input("Preparar base de treino e teste da pasta de janelas Yes/no?")
     if opcao.lower() in ["","yes","y"]:
         prepararBasesTreinoTestePorJanela(PreProcessor)
 
-    opcao = raw_input("Preparar base Yes/no (não uso, pre-processo a mensagem antes de classificar):")    
+    opcao = input("Preparar base Yes/no (não uso, pre-processo a mensagem antes de classificar):")    
     if opcao.lower() in ["","yes","y"]:
         prepararBase(PreProcessor)
 

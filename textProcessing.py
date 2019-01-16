@@ -4,8 +4,9 @@ from dateutil import parser
 import codecs
 from Preprocessor import PreProcessor
 
+
 def saveDates(datas, destino):
-    
+
     datas = list(set(datas))
     datas.sort()
     for data in datas:
@@ -24,7 +25,7 @@ def tweetsAgrupadosPorData(arquivos, pathDestination):
         for linha in arq:
             tweet = json.loads(linha)
             try:
-                created_at = tweet['created_at']
+                created_at = tweet['tweet_created_at']
                 created_at = parser.parse(created_at)
                 created_at = str(created_at.day)+"-"+str(created_at.month)
             except:
@@ -57,7 +58,7 @@ def wordNetWithTweets(datas, pathDestination, pathDestinationWordNet):
             #created_at = tweet['created_at']
             #created_at = parser.parse(created_at)
             #created_at = str(created_at.day)+"-"+str(created_at.month)
-            text = tweet["text"]
+            text = tweet["tweet_text"]
             text = text.lower()
             text = preProcessor.textFilter(text)
             text = preProcessor.removeNonAlphaNumericValues(text)
@@ -85,7 +86,7 @@ def wordNetWithTweetsStemming(datas, pathDestination, pathDestinationWordNet):
             #created_at = tweet['created_at']
             #created_at = parser.parse(created_at)
             #created_at = str(created_at.day)+"-"+str(created_at.month)
-            text = tweet["text"]
+            text = tweet["tweet_text"]
             text = text.lower()
             text = preProcessor.textFilter(text)
             text = preProcessor.removeNonAlphaNumericValues(text)
@@ -156,11 +157,11 @@ def bagfOfWordsStemming(datas, pathDestination, pathBagOfWordsStemming):
 if __name__ == "__main__":
 
     
-    arq0 = open("rocinha")        
+    arq0 = open("tiagosilva.json")        
     arquivos = [arq0]
     
     
-    pathDestination = "./tweetsPorData/"
+    pathDestination = "/home/edu/portugueseTextPreprocessor"
     datas = tweetsAgrupadosPorData(arquivos, pathDestination)
     
     datasDestino = open(pathDestination+"datas.txt","w+")
