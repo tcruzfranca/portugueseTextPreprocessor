@@ -22,13 +22,14 @@ class PreProcessor(object):
         text = re.sub('\s{2,}',' ',text)
         return text
 
+
     def replaceNonASCIIcharacter(self, text, codif='utf-8'):
         '''
         Todos carateres não ASCII e não alfa-numéricos,
         (ex: bullets, travessões, etc.) 
         são removidos!
         '''
-        return normalize('NFKD', text.decode(codif)).encode('ASCII','ignore')
+        return normalize('NFKD', text).encode('ASCII','ignore').decode(codif)
 
 
     def textFilter(self, text):
@@ -45,6 +46,7 @@ class PreProcessor(object):
         '''   
         return text.strip()
 
+
     def replaceTwoOrMore(self, text):
         '''
             Remove caracteres repetidos.
@@ -54,6 +56,7 @@ class PreProcessor(object):
         findings = pattern.findall(text)
         #print (findings)
         return pattern.sub(r"\1", text)
+
 
     def replaceTwoOrMoreObservingPortugueseGrammarRules(self,text):
         pass
@@ -70,10 +73,12 @@ class PreProcessor(object):
                 palavra += pal+" "
         return palavra.strip()
 
+
     def _getStopWords(self,language="pt-br"):
         if len(self.stopWords) == 0:
             self.stopWords = removeStopWords.listStopWords(language)
         return self.stopWords
+
 
     def stopWordsWithoutNonASCIICharacteres(self,onlyASCII = True,language="pt-br"):
         if (self.stopWordsOnlyASCIICharacteres and onlyASCII):            
@@ -144,6 +149,7 @@ class PreProcessor(object):
 
         return lista
 
+
     def stemmingFrase(self,frase,language="pt-br", approach="orengo"):
         palavras = frase.split()
         palavras = self.stemming(palavras)
@@ -156,4 +162,3 @@ class PreProcessor(object):
                 text += i+' '
 
         return text.strip()
-

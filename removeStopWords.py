@@ -11,15 +11,15 @@ def _list_de_stopWords(arquivo):
         stop_word = stop_word.lower()
         stop_word = stop_word.replace('\n','')
         stop_word = stop_word.replace('\r','')
-        lista.append(str(stop_word).decode('utf-8'))
+        lista.append(str(stop_word))
 
     return lista  
 
-def listStopWords(language="pt-br"):
+def listStopWords(language="pt-br", f="stopwords_pt.txt"):
 
     arquivo = ""
     if language == "pt-br":
-        arquivo = open("stopWords/stopwords_pt.txt")
+        arquivo = open(f)
     else:
         print("Inclua a lista e altere o método listStopWords em removeStopWords")
 
