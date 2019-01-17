@@ -7,7 +7,7 @@ from Preprocessor import PreProcessor
 '''
 # O maior problema até agora aparentemente é com o uso da biblioteca dateutil
 
-	# Quando se usa uma data do jeito que está no .json, se tem a seguinte configuração:
+	# Quando se usa uma data do jeito que está no .json de um tweet, se tem a seguinte configuração:
 
 		->  1:30 PM - 5 Oct 2018
 		# o Python shell retorna o seguinte erro:
@@ -23,8 +23,18 @@ from Preprocessor import PreProcessor
 	
 	# Como o horário é uma informação sensível, não acho que a melhor abordagem seja removê-lo
 
-	
-	#### Eu posso dividir em duas strings, parsear cada uma individualmente e juntar
+	*********** basta tirar o travessão que funciona
+	>>> from dateutil import parser
+	>>> data = '1:30 PM 5 Oct 2018'
+	>>> print(parser.parse(data))
+	2018-10-05 13:30:00
+
+# Não funcionou a partir de um certo número de tweets
+	>>> data = '1:30 PM - 5 Oct 2018'
+	>>> data = data.replace("-","")
+	>>> print(parser.parse(data))
+	2018-10-05 13:30:00
+
 
 '''
 

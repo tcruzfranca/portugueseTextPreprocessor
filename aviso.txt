@@ -1,0 +1,3 @@
+AVISO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Eu alterei os arquivos na pasta do stemmer, inclusive 'setup.py', pois a instalação estava configurada apenas para python2

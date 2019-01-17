@@ -3,7 +3,8 @@ from sklearn.datasets import load_files
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import CountVectorizer #bag of words
 from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.cross_validation import KFold
+#from sklearn.cross_validation import KFold
+from sklearn.model_selection import KFold
 import numpy as np
 from sklearn import metrics
 import json
@@ -15,7 +16,8 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.linear_model import SGDClassifier
 from sklearn.svm import SVC
 
-from sklearn.grid_search import GridSearchCV
+#from sklearn.grid_search import GridSearchCV
+from sklearn.model_selection import GridSearchCV
 
 
 def datasetTrainTest(folder,categories=['positives','negatives','neutrals']):    
@@ -247,11 +249,11 @@ def evaluateAllTweetMessages(train_set,clf, folderData, folderResultsAnalysis):
     arq_date.close()
     arq_results.close()
 
-def get_train_set(folderTrainTest = "BaseTreinoTeste",categories = ['positives','negatives','neutrals']):        
+def get_train_set(folderTrainTest = "/home/edu/portugueseTextPreprocessor/Treinamento/BaseTreinoTeste",categories = ['positives','negatives','neutrals']):        
     train_set = datasetTrainTest(folderTrainTest,categories)
     return train_set
 
-def get_train_set_without_stemming(folderTrainTest = "BaseTreinoTesteSemStemming", categories = ['positives','negatives','neutrals']):
+def get_train_set_without_stemming(folderTrainTest = "/home/edu/portugueseTextPreprocessor/Treinamento/BaseTreinoTesteSemStemming", categories = ['positives','negatives','neutrals']):
     
     train_set = get_train_set(folderTrainTest,categories)
     return train_set

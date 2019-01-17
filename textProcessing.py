@@ -26,6 +26,7 @@ def tweetsAgrupadosPorData(arquivos, pathDestination):
             tweet = json.loads(linha)
             try:
                 created_at = tweet['tweet_created_at']
+                created_at = created_at.replace("-","")
                 created_at = parser.parse(created_at)
                 created_at = str(created_at.day)+"-"+str(created_at.month)
             except:
@@ -40,7 +41,7 @@ def tweetsAgrupadosPorData(arquivos, pathDestination):
                 if created_at not in datas:
                     datas.append(created_at)
 
-            destino.write(linha.decode("utf-8"))
+            destino.write(linha)# .decode("utf-8"))
     destino.close()
     return datas
 
@@ -83,7 +84,8 @@ def wordNetWithTweetsStemming(datas, pathDestination, pathDestinationWordNet):
         destino = codecs.open(pathDestinationWordNet+dataNome,"a","utf-8")
         for linha in arq:
             tweet = json.loads(linha)
-            #created_at = tweet['created_at']
+            #created_at = tweet['tweet_created_at']
+            #created_at = created_at.replace("-","")
             #created_at = parser.parse(created_at)
             #created_at = str(created_at.day)+"-"+str(created_at.month)
             text = tweet["tweet_text"]
@@ -161,7 +163,7 @@ if __name__ == "__main__":
     arquivos = [arq0]
     
     
-    pathDestination = "/home/edu/portugueseTextPreprocessor"
+    pathDestination = "/home/edu/portugueseTextPreprocessor/Save_by_Date/"
     datas = tweetsAgrupadosPorData(arquivos, pathDestination)
     
     datasDestino = open(pathDestination+"datas.txt","w+")

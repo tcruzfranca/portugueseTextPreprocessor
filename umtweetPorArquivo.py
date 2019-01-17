@@ -73,7 +73,7 @@ def prepararBasesTreinoTeste(PreProcessor):
         Nome das classes igual ao nome dos arquivos onde se encontram os dados para treino e teste
         cada arquivo uma classe
     '''
-    folder = "BaseTreinoTeste/"
+    folder = "/home/edu/portugueseTextPreprocessor/Treinamento/BaseTreinoTeste/"
     arquivos = ["VHVL","HVL","MVL","LVL","NVI"]    
     oneFilePerMessage(PreProcessor,folder,arquivos)
 
@@ -83,7 +83,7 @@ def prepararBasesTreinoTesteWithoutStemming(PreProcessor):
         Nome das classes igual ao nome dos arquivos onde se encontram os dados para treino e teste
         cada arquivo uma classe
     '''
-    folder = "BaseTreinoTesteSemStemming/"
+    folder = "/home/edu/portugueseTextPreprocessor/Treinamento/BaseTreinoTesteSemStemming/"
     arquivos = ["VHVL","HVL","MVL","LVL","NVI"]    
     oneFilePerMessageWithoutStemming(PreProcessor,folder,arquivos)
 
@@ -94,7 +94,7 @@ def prepararBasesTreinoTestePorJanela(PreProcessor):
         Nome das classes igual ao nome dos arquivos onde se encontram os dados para treino e teste
         cada arquivo uma classe
     '''
-    folder = "BaseTreinoTeste/porJanela/"
+    folder = "/home/edu/portugueseTextPreprocessor/Treinamento/BaseTreinoTeste/porJanela/"
     arquivos = ["VHVL","HVL","MVL","LVL","NVI"]    
     oneFilePerMessage(PreProcessor,folder,arquivos)
 
