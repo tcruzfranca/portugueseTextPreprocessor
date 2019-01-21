@@ -57,10 +57,11 @@ with open("uTest/assis_padrao.txt", "r") as arq_entrada:
 		'''
 
 
-		'''
-		# Precisa ser testado em outra unidade
-		text = prep.stemming(str(arq_entrada.read()))
-		arq_saida.write(text)
+		
+		# FUNCIONANDO sem alterações
+		text = prep.stemming("lambança")
+		print(text)
+
 		'''
 
 		
@@ -68,6 +69,7 @@ with open("uTest/assis_padrao.txt", "r") as arq_entrada:
 		stem = prep.stemmingFrase("O rato roeu a roupa do rei de Roma. Socorram-me subi no ônibus em Marrocos.")
 		print(stem)
 		
+		'''
 
 
 

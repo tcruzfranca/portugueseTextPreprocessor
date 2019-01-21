@@ -16,7 +16,8 @@ def preProcessingMessages(PreProcessor, message, removeNonASCIIFromMessage=True,
     if removeNonAlphaNumericValues:
         message = PreProcessor.removeNonAlphaNumericValues(message)
     
-    PreProcessor.stopWordsWithoutNonASCIICharacteres(replaceNonASCIIFromStopWords)    
+    PreProcessor.stopWordsWithoutNonASCIICharacteres(replaceNonASCIIFromStopWords)
+     
     if remove_stopWords:
         message = PreProcessor.remove_stopWords(message)     
     
@@ -45,7 +46,8 @@ def oneFilePerMessage(PreProcessor,folder,arquivos):
         arq = open(folder+arquivo)
         
         for message in arq:
-            salvar = open(folder+arquivo+"s/"+str(contTweetsFileName),"w")
+            # não entendi o propósito do código comentado da linha abaixo
+            salvar = open(folder+arquivo, "w") # + "s/"+str(contTweetsFileName),"w")
             message = preProcessingMessages(PreProcessor, message)
             salvar.write(message)
             contTweetsFileName+=1
@@ -61,7 +63,7 @@ def oneFilePerMessageWithoutStemming(PreProcessor,folder,arquivos):
         arq = open(folder+arquivo)
         
         for message in arq:
-            salvar = open(folder+arquivo+"s/"+str(contTweetsFileName),"w")
+            salvar = open(folder+arquivo, "w") # + "s/"+str(contTweetsFileName),"w")
             message = preProcessingMessages(PreProcessor, message,stemmingFrase = False)
             salvar.write(message)
             contTweetsFileName+=1
@@ -74,7 +76,8 @@ def prepararBasesTreinoTeste(PreProcessor):
         cada arquivo uma classe
     '''
     folder = "/home/edu/portugueseTextPreprocessor/Treinamento/BaseTreinoTeste/"
-    arquivos = ["VHVL","HVL","MVL","LVL","NVI"]    
+    # arquivos = ["VHVL","HVL","MVL","LVL","NVI"]
+    arquivos = ["palestrinha.json"]    
     oneFilePerMessage(PreProcessor,folder,arquivos)
 
 def prepararBasesTreinoTesteWithoutStemming(PreProcessor):
