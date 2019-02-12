@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import Preprocessor
 
-def preProcessingMessages(PreProcessor, message, removeNonASCIIFromMessage=True,   
+def preProcessingMessages(PreProcessor, message, removeNonASCIIFromMessage=False,   
                          removeNonAlphaNumericValues=True, replaceNonASCIIFromStopWords=True, 
                          remove_stopWords=True, text_filter=True, replaceTwoOrMore=True, 
                          removeSmallWords=True, stemmingFrase = True):
@@ -42,16 +42,15 @@ def oneFilePerMessage(PreProcessor,folder,arquivos):
     '''
     contTweetsFileName = 0
     for arquivo in arquivos:
-
-        arq = open(folder+arquivo)
-        
-        for message in arq:
-            # não entendi o propósito do código comentado da linha abaixo
-            salvar = open(folder+arquivo, "w") # + "s/"+str(contTweetsFileName),"w")
-            message = preProcessingMessages(PreProcessor, message)
-            salvar.write(message)
-            contTweetsFileName+=1
-            salvar.close()
+        with open(folder+arquivo) as arq:
+        #CONSERTAR ESTE BLOCO INTEIRO.
+            for message in arq:
+                salvar = open(folder+arquivo+"_preprocessado", "w")
+                #salvar = open(folder+arquivo, "r") # + "s/"+str(contTweetsFileName),"w")
+                message = preProcessingMessages(PreProcessor, message)
+                salvar.write(message)
+                contTweetsFileName+=1
+                salvar.close()
 
 def oneFilePerMessageWithoutStemming(PreProcessor,folder,arquivos):
     '''
@@ -79,17 +78,17 @@ def prepararBasesTreinoTeste(PreProcessor):
     # arquivos = ["VHVL","HVL","MVL","LVL","NVI"]
     arquivos = ["palestrinha.json"]    
     oneFilePerMessage(PreProcessor,folder,arquivos)
-
+'''
 def prepararBasesTreinoTesteWithoutStemming(PreProcessor):
-    '''
+    
         Depois, se quiser centralizar configuracoes, passar folder e nomes das classes.
         Nome das classes igual ao nome dos arquivos onde se encontram os dados para treino e teste
         cada arquivo uma classe
-    '''
+    
     folder = "/home/edu/portugueseTextPreprocessor/Treinamento/BaseTreinoTesteSemStemming/"
     arquivos = ["VHVL","HVL","MVL","LVL","NVI"]    
     oneFilePerMessageWithoutStemming(PreProcessor,folder,arquivos)
-
+'''
 
 def prepararBasesTreinoTestePorJanela(PreProcessor):
     '''

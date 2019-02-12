@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 import removeStopWords
+import spacy
 #import csv
 from unicodedata import normalize
 from ptstemmer.implementations.OrengoStemmer import OrengoStemmer
@@ -156,9 +157,21 @@ class PreProcessor(object):
         text=""
         listStopWords = self._getStopWords(language)
         for i in palavras:
-            #print (i)
+            # print (i)
             i.strip()    
             if i not in listStopWords:
                 text += i+' '
 
         return text.strip()
+
+    def lemmatize(self, frase, language="pt-br"):
+        # é preciso baixar o modelo --> python3 -m spacy download pt
+        nlp = spacy.load('pt')
+        frase = nlp(frase)
+        listStopWords = self._getStopWords(language)
+
+        lista = [palavra.lemma_ for palavra in frase if palavra not in listStopWords]
+
+        # return lista
+        
+        pass
