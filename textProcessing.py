@@ -4,6 +4,27 @@ from dateutil import parser
 import codecs
 from Preprocessor import PreProcessor
 
+'''
+    @authors
+        Tiago Cruz de França
+        Eduardo Freire Mangabeira
+    @since
+        03-23-2015
+    @version 
+        1.0.0
+    @see
+        https://github.com/tcruzfranca/annotatedDatasetBrazilianProtests
+        This is a specific version made for turn easy the retrival of tweets from the Brazilian protests Golden Dataset.
+        For a more generic version for retrival of tweets by id, access https://github.com/tcruzfranca/scripts.
+    License (BSD 2): Available in https://github.com/tcruzfranca/annotatedDatasetBrazilianProtests/blob/master/LICENSE.txt.
+    
+    description 
+                This code is useful for retrieval tweets usin list of tweet's IDs. Such list must be a file in which each ID is in a different line.
+                In the end of this file you can see the main function and the instructions for set correctly the configurations needed.
+    
+    Please access the git address and cite at least one: our paper or the git account if we want use this script.
+'''
+
 
 def saveDates(datas, destino):
 
