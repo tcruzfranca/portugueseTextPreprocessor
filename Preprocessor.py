@@ -184,6 +184,14 @@ class PreProcessor(object):
 
         return text.strip()
 
+
+    '''
+    A partir daqui há a possibilidade de mais de uma abordagem por conta do problema de ambiguidade
+    presente na língua portuguesa em diversos casos. Identificar o morfema pode ser uma forma eficaz
+    de fazer nossa lista de stopwords mais inteligente.
+
+
+    '''
     def lemmatizePhraseWithoutStopwords(self, frase, language="pt-br"):
         # é preciso baixar o modelo --> python3 -m spacy download pt
 
@@ -232,4 +240,10 @@ class PreProcessor(object):
 
         # return lista
         
+        pass
+
+
+    def spellchecker(self, frase):
+
+        # check for eisting libraries pt-br
         pass
