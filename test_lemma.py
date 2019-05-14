@@ -2,11 +2,16 @@
 from spacy.lang.pt.lemmatizer import LOOKUP
 
 '''
+from Preprocessor import PreProcessor
 
-import spacy
-from spacy import displacy
+prep = PreProcessor()
 
-frase = "Eu como aquela batata como os ingleses comem aquela batata."
-nlp = spacy.load('pt')
-frase = nlp(frase)
-print([(token,token.pos_) for token in frase])
+frase = "Eu como aquela batata como os ingleses comem aquela batata sintática."
+k = prep.remove_stopWords(frase)
+print(k)
+w = prep.lemmatizePhraseWithoutStopwordsandPOS(frase)
+print(w)
+z = prep.lemmatizePhraseWithoutStopwords(frase)
+print(z)
+j = prep.lemmatizePhrase(frase)
+print(j)

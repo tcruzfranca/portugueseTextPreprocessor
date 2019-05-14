@@ -121,7 +121,7 @@ class PreProcessor(object):
 
     def remove_stopWords(self, tweet, language="pt-br", list_stopWords=[]):
         '''
-            Usado depois de remover pontuacoes do tweet.
+            Usado depois de remover pontuacoes do lemmatizePhrase.
             Remove stopwords do tweet com base na lista_stopWords criada em lista_de_stopWords(arquivo).
         '''
         listStopWords = []
@@ -199,11 +199,12 @@ class PreProcessor(object):
         if language != "pt-br":
             languageAdapter = language
 
+        frase = self.remove_stopWords(frase)
         nlp = spacy.load(languageAdapter)
         frase = nlp(frase)
-        listStopWords = self._getStopWords(language)
-
-        lista = [palavra.lemma_ for palavra in frase if palavra not in listStopWords]
+        # listStopWords = self._getStopWords(language)
+        lista = [palavra.lemma_ + ":" + palavra.pos_ for palavra in frase]
+        # lista = [palavra.lemma_ for palavra in frase for stopword in listStopWords if palavra not in stopword]
 
         return lista
 
@@ -214,11 +215,13 @@ class PreProcessor(object):
         if language != "pt-br":
             languageAdapter = language
 
-        nlp = spacy.load(languageAdapter)
+        frase = self.remove_stopWords(frase)
+        # disable=['tagger']
+        nlp = spacy.load(languageAdapter, disable=['tagger'])
         frase = nlp(frase)
-        listStopWords = self._getStopWords(language, disable=['tagger'])
-
-        lista = [palavra.lemma_ for palavra in frase if palavra not in listStopWords]
+        #listStopWords = self._getStopWords(language)
+        lista = [palavra.lemma_ for palavra in frase]
+        # lista = [palavra.lemma_ for palavra in frase for stopword in listStopWords if palavra not in stopword]
 
         return lista
         
@@ -245,5 +248,5 @@ class PreProcessor(object):
 
     def spellchecker(self, frase):
 
-        # check for eisting libraries pt-br
+        # check for existing libraries pt-br
         pass
